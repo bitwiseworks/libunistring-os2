@@ -141,6 +141,12 @@ version_minor=`echo "${VERSION}" | sed -n -e "$sed_extract_minor"`
 version_subminor=`echo "${VERSION}" | sed -n -e "$sed_extract_subminor"`
 HEXVERSION=0x`$AWK 'BEGIN { printf("%02X%02X%02X"',"$version_major","$version_minor","$version_subminor"') }'`
 AC_SUBST([HEXVERSION])
+case "$host" in
+*os2*)
+	PACKAGE_PATCH=$version_subminor
+	AC_SUBST(PACKAGE_PATCH)
+	;;
+esac
 
 dnl Check for tools needed for formatting the documentation.
 ac_aux_dir_abs=`cd $ac_aux_dir && pwd`

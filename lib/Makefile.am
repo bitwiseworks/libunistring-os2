@@ -16,6 +16,10 @@
 
 ## Process this file with automake to produce Makefile.in.
 
+VENDOR ?=community
+BUILD_INFO=\#\#1\#\# $(shell date +'%d %b %Y %H:%M:%S')     $(shell uname -n)
+BUILDLEVEL_INFO=@\#$(VENDOR):$(VERSION)\#@$(BUILD_INFO)::::$(PACKAGE_PATCH)::
+
 AUTOMAKE_OPTIONS = 1.5 gnits subdir-objects no-dependencies
 EXTRA_DIST =
 BUILT_SOURCES =
@@ -321,4 +325,5 @@ LTV_AGE=1
 # How to build libunistring.la.
 libunistring_la_LDFLAGS += \
   -version-info $(LTV_CURRENT):$(LTV_REVISION):$(LTV_AGE) \
+  -buildlevel '$(BUILDLEVEL_INFO)' \
   -rpath $(libdir)
