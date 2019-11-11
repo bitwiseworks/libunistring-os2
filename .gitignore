@@ -1,6 +1,10 @@
 autom4te.cache/
 config.h.in~
 
+INSTALL
+Makefile.in
+aclocal.m4
+build-aux/compile
 build-aux/config.guess
 build-aux/config.sub
 build-aux/depcomp
