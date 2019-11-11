@@ -69,7 +69,7 @@ if test "${PATH_SEPARATOR+set}" != set; then
   # contains only /bin. Note that ksh looks also at the FPATH variable,
   # so we have to set that as well for the test.
   PATH_SEPARATOR=:
-  (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 \
+  (PATH='/bin;/bin;/@unixroot/usr/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 \
     && { (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 \
            || PATH_SEPARATOR=';'
        }
@@ -173,8 +173,8 @@ fi
 #  ? - not ok
 gl_shell_test_script_='
 test $(echo y) = y || exit 1
-f_local_() { local v=1; }; f_local_ || exit 1
-f_dash_local_fail_() { local t=$(printf " 1"); }; f_dash_local_fail_
+f_local_() { v=1; }; f_local_ || exit 1
+f_dash_local_fail_() { t=$(printf " 1"); }; f_dash_local_fail_
 score_=10
 if test "$VERBOSE" = yes; then
   test -n "$( (exec 3>&1; set -x; P=1 true 2>&3) 2> /dev/null)" && score_=9

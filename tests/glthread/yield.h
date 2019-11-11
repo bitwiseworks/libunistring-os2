@@ -29,14 +29,20 @@
 
 /* Use the POSIX threads library.  */
 
+#ifndef __OS2__
 # include <sched.h>
+#endif
 
 # ifdef __cplusplus
 extern "C" {
 # endif
 
+#ifndef __OS2__
 # define gl_thread_yield() \
     sched_yield ()
+#else
+# define gl_thread_yield() 0
+#endif
 
 # ifdef __cplusplus
 }
