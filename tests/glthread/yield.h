@@ -41,7 +41,8 @@ extern "C" {
 # define gl_thread_yield() \
     sched_yield ()
 #else
-# define gl_thread_yield() 0
+# define gl_thread_yield() \
+    sleep (0)
 #endif
 
 # ifdef __cplusplus

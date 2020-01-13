@@ -30,7 +30,7 @@ SIGNATURE_CHECK (sigprocmask, int, (int, const sigset_t *, sigset_t *));
 
 #include "macros.h"
 
-#if !(defined _WIN32 && !defined __CYGWIN__)
+#if !(defined _WIN32 && !defined __CYGWIN__) && !defined(__OS2__)
 
 static volatile int sigint_occurred;
 

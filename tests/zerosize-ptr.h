@@ -73,7 +73,11 @@ zerosize_ptr (void)
         (char *) mmap (NULL, 2 * pagesize, PROT_READ | PROT_WRITE,
                        flags, fd, 0);
       if (two_pages != (char *)(-1)
+#ifdef __OS2__
+          && munmap (two_pages + pagesize, pagesize) == 0)
+#else
           && mprotect (two_pages + pagesize, pagesize, PROT_NONE) == 0)
+#endif
         return two_pages + pagesize;
     }
 #endif
